@@ -1,0 +1,12 @@
+{
+  "type": "code",
+  "modid": "almanaccodex",
+  "name": "The Almanac: Codex",
+  "authors": ["Lueken Good Design"],
+  "description": "Per-player progressive discovery system for The Almanac line. Adds an Almanac tab to the vanilla Handbook where flora and recipes fill in as players observe, harvest, and process them. Platform mod that downstream Almanac sub-mods (Forager, Apothecary, Alchemist) integrate with.",
+  "version": "0.1.0",
+  "side": "universal",
+  "requiredOnClient": true,
+  "requiredOnServer": true,
+  "dependencies": {}
+}
