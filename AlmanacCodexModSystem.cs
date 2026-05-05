@@ -1,3 +1,4 @@
+using AlmanacCodex.Diagnostics;
 using AlmanacCodex.Discovery;
 using AlmanacCodex.Networking;
 using AlmanacCodex.Registry;
@@ -59,7 +60,8 @@ public class AlmanacCodexModSystem : ModSystem
     public override void StartClientSide(ICoreClientAPI capi)
     {
         sightDetector = new SightDetector(capi, Discovery, Entries);
-        CodexLogger.Info(capi, "mod-system", "client sight detector running on 100ms tick");
+        CodexInspectCommand.Register(capi, this);
+        CodexLogger.Info(capi, "mod-system", "client sight detector running on 100ms tick + .codex chat command registered");
     }
 
     public override void AssetsFinalize(ICoreAPI api)

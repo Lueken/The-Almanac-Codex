@@ -60,8 +60,8 @@ public class DiscoveryService
         if (!entries.IsRegistered(new AssetLocation(code))) return;
         if (store.RecordSight(player, code))
         {
-            CodexLogger.Debug(api, "discovery",
-                $"sight '{code}' player='{player.PlayerName}'");
+            CodexLogger.Info(api, "discovery",
+                $"SIGHT '{code}' player='{player.PlayerName}'");
         }
     }
 
