@@ -1,5 +1,6 @@
 using AlmanacCodex.Diagnostics;
 using AlmanacCodex.Discovery;
+using AlmanacCodex.Handbook;
 using AlmanacCodex.Networking;
 using AlmanacCodex.Registry;
 using AlmanacCodex.State;
@@ -23,6 +24,7 @@ public class AlmanacCodexModSystem : ModSystem
 
     private SightDetector? sightDetector;
     private PickupHook? pickupHook;
+    private HandbookIntegration? handbookIntegration;
 
     public override void Start(ICoreAPI api)
     {
@@ -61,7 +63,9 @@ public class AlmanacCodexModSystem : ModSystem
     {
         sightDetector = new SightDetector(capi, Discovery, Entries);
         CodexInspectCommand.Register(capi, this);
-        CodexLogger.Info(capi, "mod-system", "client sight detector running on 100ms tick + .codex chat command registered");
+        handbookIntegration = new HandbookIntegration(capi, Entries, Store);
+        CodexLogger.Info(capi, "mod-system",
+            "client sight detector + .codex chat command + Handbook tab integration ready");
     }
 
     public override void AssetsFinalize(ICoreAPI api)
