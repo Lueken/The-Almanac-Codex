@@ -1,11 +1,13 @@
 using AlmanacCodex.Diagnostics;
 using AlmanacCodex.Discovery;
+using AlmanacCodex.Gui;
 using AlmanacCodex.Handbook;
 using AlmanacCodex.Networking;
 using AlmanacCodex.Registry;
 using AlmanacCodex.State;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.Server;
 
 [assembly: ModInfo("The Almanac: Codex", "almanaccodex",
@@ -25,6 +27,7 @@ public class AlmanacCodexModSystem : ModSystem
     private SightDetector? sightDetector;
     private PickupHook? pickupHook;
     private HandbookIntegration? handbookIntegration;
+    private AlmanacDialog? almanacDialog;
 
     public override void Start(ICoreAPI api)
     {
@@ -64,8 +67,25 @@ public class AlmanacCodexModSystem : ModSystem
         sightDetector = new SightDetector(capi, Discovery, Entries);
         CodexInspectCommand.Register(capi, this);
         handbookIntegration = new HandbookIntegration(capi, Entries, Store);
+
+        almanacDialog = new AlmanacDialog(capi, Entries, Store);
+        capi.Input.RegisterHotKey(
+            "almanaccodex-open",
+            Lang.Get("almanaccodex:hotkey-open"),
+            GlKeys.J,
+            HotkeyType.GUIOrOtherControls,
+            altPressed: true);
+        capi.Input.SetHotKeyHandler("almanaccodex-open", _ => ToggleDialog());
+
         CodexLogger.Info(capi, "mod-system",
-            "client sight detector + .codex chat command + Handbook tab integration ready");
+            "client sight detector + .codex chat command + Handbook integration + Alt+J dialog ready");
+    }
+
+    private bool ToggleDialog()
+    {
+        if (almanacDialog == null) return false;
+        almanacDialog.Toggle();
+        return true;
     }
 
     public override void AssetsFinalize(ICoreAPI api)

@@ -1,3 +1,56 @@
 {
-  "game:handbook-category-almanac": "The Almanac"
+  "game:handbook-category-almanac": "The Almanac",
+
+  "almanaccodex:hotkey-open": "Open The Almanac",
+  "almanaccodex:dialog-title": "The Almanac",
+  "almanaccodex:dialog-counter": "{0} of {1} discovered",
+  "almanaccodex:dialog-pause": "Pause game",
+
+  "almanaccodex:filter-all": "All",
+  "almanaccodex:filter-aromatic": "Aromatic",
+  "almanaccodex:filter-medicinal": "Medicinal",
+  "almanaccodex:filter-toxic": "Toxic",
+  "almanaccodex:filter-culinary": "Culinary",
+  "almanaccodex:filter-fibrous": "Fibrous",
+  "almanaccodex:filter-decorative": "Decorative",
+  "almanaccodex:filter-sweet": "Sweet",
+  "almanaccodex:filter-acidic": "Acidic",
+  "almanaccodex:filter-starchy": "Starchy",
+  "almanaccodex:filter-leafy": "Leafy",
+  "almanaccodex:filter-seedy": "Seedy",
+  "almanaccodex:filter-fruity": "Fruity",
+
+  "almanaccodex:grid-empty": "Nothing discovered yet. Hover over flora and pick things up to fill these pages.",
+
+  "almanaccodex:tooltip-stage-sighted": "Sighted",
+  "almanaccodex:tooltip-stage-held": "Held",
+  "almanaccodex:tooltip-stage-processed": "Processed",
+  "almanaccodex:tooltip-stage-unknown": "Unknown",
+
+  "almanaccodex:detail-back": "← Back",
+  "almanaccodex:detail-tags-heading": "Tags",
+  "almanaccodex:detail-tags-none": "No tags recorded.",
+  "almanaccodex:detail-processes-heading": "Applications",
+  "almanaccodex:detail-processes-empty": "No processes tried yet. Try preserving, drying, fermenting, or steeping.",
+
+  "almanaccodex:launchpad-welcome-heading": "The Almanac",
+  "almanaccodex:launchpad-welcome-body": "A record built from observation. Items, properties, and applications appear here only after you encounter them.",
+  "almanaccodex:launchpad-hotkey-hint": "Press Alt+J to open The Almanac.",
+  "almanaccodex:launchpad-submods-heading": "Volumes",
+  "almanaccodex:launchpad-submod-loaded": "Loaded",
+  "almanaccodex:launchpad-submod-not-loaded": "Not installed",
+  "almanaccodex:launchpad-submod-in-development": "In development",
+  "almanaccodex:launchpad-submod-progress": "{0} of {1} discovered",
+
+  "almanaccodex:submod-forager-name": "Forager",
+  "almanaccodex:submod-forager-blurb": "Trait-tagged flora, substrate-gated knapping, and preparation/preservation blocks.",
+  "almanaccodex:submod-forager-getstarted": "Walk through varied terrain. Hover at flora; pick what catches your eye.",
+
+  "almanaccodex:submod-apothecary-name": "Apothecary",
+  "almanaccodex:submod-apothecary-blurb": "Medicinal preparations from foraged flora.",
+  "almanaccodex:submod-apothecary-getstarted": "Discover medicinal-tagged plants in Forager first.",
+
+  "almanaccodex:submod-alchemist-name": "Alchemist",
+  "almanaccodex:submod-alchemist-blurb": "Distillation, infusion, transformation.",
+  "almanaccodex:submod-alchemist-getstarted": "Master the fermentation crock and the still."
 }
