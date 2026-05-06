@@ -12,7 +12,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Server;
 
 [assembly: ModInfo("The Almanac: Codex", "almanaccodex",
-    Authors = new string[] { "Lueken Good Design" },
+    Authors = new string[] { "Lueken" },
     Description = "Per-player progressive discovery system for The Almanac line.",
     Version = "0.1.0")]
 
