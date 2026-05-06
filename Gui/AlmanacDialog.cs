@@ -1008,7 +1008,9 @@ public class AlmanacDialog : ImGuiDialogWindow
         var stack = ResolveStack(code);
         if (stack != null)
         {
-            float iconSize = 100f;
+            // Icon shrunk from 100 -> 80 so VS's RenderItemstackToGui upward-perspective
+            // overflow doesn't kiss the container's top border on tall plant silhouettes.
+            float iconSize = 80f;
             float iconLeft = x + (size - iconSize) / 2f;
             float iconTop = y + (size - iconSize) / 2f;
             iconOverlay.Requests.Add(new IconRenderRequest(stack, iconLeft, iconTop, iconSize, colorArgb));
