@@ -23,7 +23,42 @@ public static class CodexInspectCommand
             .BeginSubCommand("list")
                 .WithDescription("List your discovered entries with stage")
                 .HandleWith(_ => ListDiscovered(capi, mod))
+            .EndSubCommand()
+            .BeginSubCommand("tags")
+                .WithDescription("Print collectible tags on the looked-at block or held item")
+                .HandleWith(_ => Tags(capi))
             .EndSubCommand();
+    }
+
+    private static TextCommandResult Tags(ICoreClientAPI capi)
+    {
+        CollectibleObject? collectible = null;
+        AssetLocation? code = null;
+
+        if (capi.World.Player.CurrentBlockSelection?.Position is { } pos)
+        {
+            var block = capi.World.BlockAccessor.GetBlock(pos);
+            if (block != null && block.Code.Path != "air")
+            {
+                collectible = block;
+                code = block.Code;
+            }
+        }
+        if (collectible == null)
+        {
+            var slot = capi.World.Player.InventoryManager.ActiveHotbarSlot?.Itemstack;
+            if (slot != null)
+            {
+                collectible = slot.Collectible;
+                code = collectible?.Code;
+            }
+        }
+        if (collectible == null) return TextCommandResult.Success("Nothing in hand or in crosshair.");
+
+        var names = capi.CollectibleTagRegistry.SlowEnumerateTagNames(collectible.Tags).ToArray();
+        var line = $"{code} -> tag count={names.Length} names=[{string.Join(", ", names)}]";
+        CodexLogger.Info(capi, "tags-probe", line);
+        return TextCommandResult.Success(line);
     }
 
     private static TextCommandResult Status(ICoreClientAPI capi, AlmanacCodexModSystem mod)

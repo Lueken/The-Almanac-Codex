@@ -68,7 +68,7 @@ public class AlmanacCodexModSystem : ModSystem
         CodexInspectCommand.Register(capi, this);
         handbookIntegration = new HandbookIntegration(capi, Entries, Store);
 
-        almanacDialog = new AlmanacDialog(capi, Entries, Store);
+        almanacDialog = new AlmanacDialog(capi, Entries, Store, Processes);
         capi.Input.RegisterHotKey(
             "almanaccodex-open",
             Lang.Get("almanaccodex:hotkey-open"),
