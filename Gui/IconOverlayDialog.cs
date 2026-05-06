@@ -18,13 +18,21 @@ public class IconOverlayDialog : GuiDialog
 {
     public readonly List<IconRenderRequest> Requests = new();
 
+    /// <summary>Cell labels (entry numbers) drawn AFTER icons so they sit on top.</summary>
+    public readonly List<CellLabelRequest> CellLabels = new();
+
     /// <summary>Set per-frame by AlmanacDialog. If non-null, scissor-clips icons to this rect.</summary>
     public ClipRect? ClipBounds;
 
     /// <summary>Set per-frame by AlmanacDialog when a cell is hovered.</summary>
     public TooltipState? Tooltip;
 
+    /// <summary>When true, suppress all icons + cell labels (e.g. while an ImGui popup is open
+    /// so the popup remains the most-forward element).</summary>
+    public bool SuppressOverlay;
+
     private readonly Dictionary<string, LoadedTexture> tooltipLineCache = new();
+    private readonly Dictionary<string, LoadedTexture> cellLabelCache = new();
 
     public IconOverlayDialog(ICoreClientAPI capi) : base(capi) { }
 
@@ -43,6 +51,16 @@ public class IconOverlayDialog : GuiDialog
 
     public override void OnRenderGUI(float deltaTime)
     {
+        if (SuppressOverlay)
+        {
+            Requests.Clear();
+            CellLabels.Clear();
+            ClipBounds = null;
+            Tooltip = null;
+            SuppressOverlay = false;
+            return;
+        }
+
         bool scissored = false;
         if (ClipBounds is { } cb)
         {
@@ -76,6 +94,18 @@ public class IconOverlayDialog : GuiDialog
 
         if (scissored) capi.Render.PopScissor();
 
+        // Cell labels (entry numbers) — rendered after icons with depth-test disabled so the
+        // 3-digit number always sits on top of the specimen art.
+        if (CellLabels.Count > 0)
+        {
+            capi.Render.GLDisableDepthTest();
+            foreach (var lbl in CellLabels)
+            {
+                DrawCellLabel(lbl);
+            }
+            capi.Render.GLEnableDepthTest();
+        }
+
         // Tooltip is drawn unclipped, after icons, with depth test disabled so it always
         // wins against the item icons (whose render path uses depth and resists 2D layering).
         if (Tooltip is { } tt)
@@ -86,8 +116,44 @@ public class IconOverlayDialog : GuiDialog
         }
 
         Requests.Clear();
+        CellLabels.Clear();
         ClipBounds = null;
         Tooltip = null;
+    }
+
+    private void DrawCellLabel(CellLabelRequest lbl)
+    {
+        // Cache key = text + style (gold for hover/selected, muted otherwise). Cap is ~232 entries
+        // worst case; in practice only what fits on-screen at once.
+        var key = lbl.Text + (lbl.Highlighted ? "_g" : "_m");
+        if (!cellLabelCache.TryGetValue(key, out var tex))
+        {
+            // Color triplet (text, border, fill) chosen so the chip reads against a busy icon
+            // behind it. Highlighted = gold border + gold text. Muted = hairline border + ivory.
+            var textColor = lbl.Highlighted
+                ? new double[] { 0xd4 / 255.0, 0xa8 / 255.0, 0x5a / 255.0, 1.0 }   // GoldAccent
+                : new double[] { 0xe8 / 255.0, 0xd9 / 255.0, 0xb8 / 255.0, 1.0 };  // InkPrimary
+            var borderColor = lbl.Highlighted
+                ? new[] { 0xd4 / 255.0, 0xa8 / 255.0, 0x5a / 255.0, 1.0 }
+                : new[] { 0x5a / 255.0, 0x4a / 255.0, 0x36 / 255.0, 1.0 };
+
+            var font = CairoFont.WhiteSmallText().WithFontSize(11).WithColor(textColor);
+            font.Fontname = "Georgia";
+            var bg = new TextBackground
+            {
+                HorPadding = 5,
+                VerPadding = 2,
+                Radius = 2,
+                FillColor = new[] { 0x1f / 255.0, 0x18 / 255.0, 0x10 / 255.0, 0.92 },  // InsetBg @ 92%
+                BorderColor = borderColor,
+                BorderWidth = 1,
+            };
+            tex = new TextTextureUtil(capi).GenTextTexture(lbl.Text, font, 80, bg);
+            cellLabelCache[key] = tex;
+        }
+        // Right-anchor: lbl.X is the cell's right edge minus a margin; compute draw X from texture width.
+        double drawX = lbl.RightAnchor ? lbl.X - tex.Width : lbl.X;
+        capi.Render.Render2DTexturePremultipliedAlpha(tex.TextureId, drawX, lbl.Y, tex.Width, tex.Height, z: 400);
     }
 
     private void DrawTooltip(TooltipState tt)
@@ -108,14 +174,25 @@ public class IconOverlayDialog : GuiDialog
 
         if (!tooltipLineCache.TryGetValue(key, out var tex))
         {
-            var font = CairoFont.WhiteSmallText();
+            // Codex parchment palette — matches CodexTheme:
+            //   ParchmentBg     #332a1f  → fill
+            //   BorderHairline  #5a4a36  → border
+            //   InkPrimary      #e8d9b8  → text
+            // Cairo font family "Georgia" resolves to the system font when present, falling
+            // back gracefully to a generic serif if not.
+            var font = CairoFont.WhiteSmallText()
+                .WithFontSize(15)
+                .WithColor(new double[] { 0xe8 / 255.0, 0xd9 / 255.0, 0xb8 / 255.0, 1.0 });
+            // Cairo resolves a serif from the system font config. Setting the family directly
+            // (CairoFont has no WithFamily fluent API in this VS version).
+            font.Fontname = "Georgia";
             var bg = new TextBackground
             {
-                HorPadding = 8,
-                VerPadding = 6,
+                HorPadding = 10,
+                VerPadding = 7,
                 Radius = 2,
-                FillColor = new[] { 0.08, 0.08, 0.08, 0.94 },
-                BorderColor = new[] { 0.55, 0.55, 0.55, 1.0 },
+                FillColor = new[] { 0x33 / 255.0, 0x2a / 255.0, 0x1f / 255.0, 0.96 },
+                BorderColor = new[] { 0x5a / 255.0, 0x4a / 255.0, 0x36 / 255.0, 1.0 },
                 BorderWidth = 1,
             };
             tex = new TextTextureUtil(capi).GenTextTexture(key, font, 320, bg);
@@ -145,7 +222,22 @@ public class IconOverlayDialog : GuiDialog
     {
         foreach (var tex in tooltipLineCache.Values) tex.Dispose();
         tooltipLineCache.Clear();
+        foreach (var tex in cellLabelCache.Values) tex.Dispose();
+        cellLabelCache.Clear();
         base.Dispose();
+    }
+}
+
+public readonly struct CellLabelRequest
+{
+    public readonly string Text;
+    public readonly float X;
+    public readonly float Y;
+    public readonly bool Highlighted;
+    public readonly bool RightAnchor;  // when true, X is the right edge of the chip
+    public CellLabelRequest(string text, float x, float y, bool highlighted, bool rightAnchor = false)
+    {
+        Text = text; X = x; Y = y; Highlighted = highlighted; RightAnchor = rightAnchor;
     }
 }
 

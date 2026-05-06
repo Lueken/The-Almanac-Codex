@@ -27,6 +27,14 @@ public static class CodexAPI
     public static IReadOnlyCollection<AlmanacEntry> AllEntries(ICoreAPI api)
         => Instance(api)?.Entries.All ?? System.Array.Empty<AlmanacEntry>();
 
+    public static AlmanacEntry? GetEntry(ICoreAPI api, AssetLocation code)
+        => Instance(api)?.Entries.Get(code);
+
+    public static IEnumerable<AlmanacEntry> GetVariantsOfGroup(ICoreAPI api, string groupKey)
+        => Instance(api)?.Entries.GetVariantsOfGroup(groupKey) ?? System.Array.Empty<AlmanacEntry>();
+
+    public static string GetGroupKey(AssetLocation code) => AlmanacEntry.GetGroupKey(code);
+
     public static void RecordSight(IPlayer player, AssetLocation code)
         => Instance(player.Entity.Api)?.Discovery.OnSight(player, code);
 
@@ -47,4 +55,13 @@ public static class CodexAPI
 
     public static DiscoveryStage GetStage(IPlayer player, AssetLocation code)
         => Instance(player.Entity.Api)?.Store.GetStage(player, code.ToShortString()) ?? DiscoveryStage.Unknown;
+
+    public static double? GetSightedAt(IPlayer player, AssetLocation code)
+        => Instance(player.Entity.Api)?.Store.GetSightedAt(player, code.ToShortString());
+
+    public static double? GetHeldAt(IPlayer player, AssetLocation code)
+        => Instance(player.Entity.Api)?.Store.GetHeldAt(player, code.ToShortString());
+
+    public static double? GetProcessedAt(IPlayer player, AssetLocation code, string processCode)
+        => Instance(player.Entity.Api)?.Store.GetProcessedAt(player, code.ToShortString(), processCode);
 }

@@ -1,6 +1,7 @@
 using AlmanacCodex.Diagnostics;
 using AlmanacCodex.Discovery;
 using AlmanacCodex.Gui;
+using AlmanacCodex.Gui.Theme;
 using AlmanacCodex.Handbook;
 using AlmanacCodex.Networking;
 using AlmanacCodex.Registry;
@@ -64,6 +65,8 @@ public class AlmanacCodexModSystem : ModSystem
 
     public override void StartClientSide(ICoreClientAPI capi)
     {
+        CodexFonts.Register(capi);
+
         sightDetector = new SightDetector(capi, Discovery, Entries);
         CodexInspectCommand.Register(capi, this);
         handbookIntegration = new HandbookIntegration(capi, Entries, Store);

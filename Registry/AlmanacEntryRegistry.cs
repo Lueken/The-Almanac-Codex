@@ -30,4 +30,13 @@ public class AlmanacEntryRegistry
     public IReadOnlyCollection<AlmanacEntry> All => entries.Values;
 
     public int Count => entries.Count;
+
+    public IEnumerable<AlmanacEntry> GetVariantsOfGroup(string groupKey)
+    {
+        foreach (var entry in entries.Values)
+        {
+            if (AlmanacEntry.GetGroupKey(entry.Code) == groupKey)
+                yield return entry;
+        }
+    }
 }

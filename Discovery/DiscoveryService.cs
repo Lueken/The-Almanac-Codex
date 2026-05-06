@@ -58,20 +58,20 @@ public class DiscoveryService
     public void ProcessSightServer(IPlayer player, string code)
     {
         if (!entries.IsRegistered(new AssetLocation(code))) return;
-        if (store.RecordSight(player, code))
+        if (store.RecordSight(player, code, api.World.Calendar.TotalDays))
         {
             CodexLogger.Info(api, "discovery",
-                $"SIGHT '{code}' player='{player.PlayerName}'");
+                $"SIGHT '{code}' player='{player.PlayerName}' day={api.World.Calendar.TotalDays:F2}");
         }
     }
 
     public void ProcessHeldServer(IPlayer player, string code)
     {
         if (!entries.IsRegistered(new AssetLocation(code))) return;
-        if (store.RecordHeld(player, code))
+        if (store.RecordHeld(player, code, api.World.Calendar.TotalDays))
         {
             CodexLogger.Info(api, "discovery",
-                $"HELD '{code}' player='{player.PlayerName}'");
+                $"HELD '{code}' player='{player.PlayerName}' day={api.World.Calendar.TotalDays:F2}");
         }
     }
 
@@ -89,10 +89,10 @@ public class DiscoveryService
                 $"process '{processCode}' is not registered; record dropped (code='{code}', player='{player.PlayerName}')");
             return;
         }
-        if (store.RecordProcess(player, code, processCode))
+        if (store.RecordProcess(player, code, processCode, api.World.Calendar.TotalDays))
         {
             CodexLogger.Info(api, "discovery",
-                $"PROCESS '{processCode}' on '{code}' player='{player.PlayerName}'");
+                $"PROCESS '{processCode}' on '{code}' player='{player.PlayerName}' day={api.World.Calendar.TotalDays:F2}");
         }
     }
 }
