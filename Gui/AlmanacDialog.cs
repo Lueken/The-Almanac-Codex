@@ -706,7 +706,9 @@ public class AlmanacDialog : ImGuiDialogWindow
         }
         else
         {
-            y += 4;
+            // Match the discovered branch's bottom padding so the header divider always
+            // lands below the stage seals (seals span basePos.Y+8 .. basePos.Y+72).
+            y += 22;
         }
 
         // Stage seals on the right of the header
