@@ -14,7 +14,7 @@ using Vintagestory.API.Server;
 [assembly: ModInfo("The Almanac: Codex", "almanaccodex",
     Authors = new string[] { "Lueken" },
     Description = "Per-player progressive discovery system for The Almanac line.",
-    Version = "0.1.0")]
+    Version = "0.2.0")]
 
 namespace AlmanacCodex;
 
