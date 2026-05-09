@@ -1,0 +1,29 @@
+[
+  {
+    "op": "addmerge",
+    "file": "game:blocktypes/plant/flower",
+    "path": "/tagsByType",
+    "value": {
+      "flower-bluebell-*":        ["almanac-decorative"],
+      "flower-catmint-*":         ["almanac-decorative", "almanac-medicinal"],
+      "flower-cornflower-*":      ["almanac-decorative", "almanac-medicinal"],
+      "flower-cowparsley-*":      ["almanac-decorative"],
+      "flower-daffodil-*":        ["almanac-decorative"],
+      "flower-edelweiss-*":       ["almanac-decorative"],
+      "flower-forgetmenot-*":     ["almanac-decorative"],
+      "flower-ghostpipepink-*":   ["almanac-decorative", "almanac-medicinal"],
+      "flower-ghostpipered-*":    ["almanac-decorative", "almanac-medicinal"],
+      "flower-ghostpipewhite-*":  ["almanac-decorative", "almanac-medicinal"],
+      "flower-goldenpoppy-*":     ["almanac-decorative"],
+      "flower-heather-*":         ["almanac-decorative"],
+      "flower-horsetail-*":       ["almanac-decorative", "almanac-medicinal"],
+      "flower-lilyofthevalley-*": ["almanac-decorative", "almanac-medicinal", "almanac-toxic"],
+      "flower-mugwort-*":         ["almanac-decorative", "almanac-medicinal"],
+      "flower-orangemallow-*":    ["almanac-decorative"],
+      "flower-redtopgrass-*":     ["almanac-decorative"],
+      "flower-westerngorse-*":    ["almanac-decorative"],
+      "flower-wilddaisy-*":       ["almanac-decorative"],
+      "flower-woad-*":            ["almanac-decorative", "almanac-medicinal"]
+    }
+  }
+]

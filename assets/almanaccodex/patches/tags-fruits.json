@@ -1,0 +1,32 @@
+[
+  {
+    "op": "addmerge",
+    "file": "game:itemtypes/food/fruit",
+    "path": "/tagsByType",
+    "value": {
+      "fruit-beautyberry":  ["almanac-fruity", "almanac-sweet"],
+      "fruit-blackberry":   ["almanac-fruity", "almanac-sweet"],
+      "fruit-blackcurrant": ["almanac-fruity", "almanac-acidic"],
+      "fruit-blueberry":    ["almanac-fruity", "almanac-sweet"],
+      "fruit-breadfruit":   ["almanac-fruity", "almanac-sweet", "almanac-starchy"],
+      "fruit-cherry":       ["almanac-fruity", "almanac-sweet"],
+      "fruit-cloudberry":   ["almanac-fruity", "almanac-sweet"],
+      "fruit-cranberry":    ["almanac-fruity", "almanac-acidic"],
+      "fruit-lychee":       ["almanac-fruity", "almanac-sweet"],
+      "fruit-mango":        ["almanac-fruity", "almanac-sweet"],
+      "fruit-orange":       ["almanac-fruity", "almanac-acidic", "almanac-sweet"],
+      "fruit-peach":        ["almanac-fruity", "almanac-sweet"],
+      "fruit-pear":         ["almanac-fruity", "almanac-sweet"],
+      "fruit-pinkapple":    ["almanac-fruity", "almanac-sweet"],
+      "fruit-pineapple":    ["almanac-fruity", "almanac-sweet", "almanac-acidic"],
+      "fruit-pomegranate":  ["almanac-fruity", "almanac-sweet", "almanac-acidic"],
+      "fruit-raspberry":    ["almanac-fruity", "almanac-sweet"],
+      "fruit-redapple":     ["almanac-fruity", "almanac-sweet"],
+      "fruit-redcurrant":   ["almanac-fruity", "almanac-acidic"],
+      "fruit-saguaro":      ["almanac-fruity", "almanac-sweet"],
+      "fruit-strawberry":   ["almanac-fruity", "almanac-sweet"],
+      "fruit-whitecurrant": ["almanac-fruity", "almanac-acidic"],
+      "fruit-yellowapple":  ["almanac-fruity", "almanac-sweet"]
+    }
+  }
+]

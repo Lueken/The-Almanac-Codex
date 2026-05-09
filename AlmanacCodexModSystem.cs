@@ -14,7 +14,7 @@ using Vintagestory.API.Server;
 [assembly: ModInfo("The Almanac: Codex", "almanaccodex",
     Authors = new string[] { "Lueken" },
     Description = "Per-player progressive discovery system for The Almanac line.",
-    Version = "0.2.0")]
+    Version = "0.2.1")]
 
 namespace AlmanacCodex;
 
@@ -32,7 +32,7 @@ public class AlmanacCodexModSystem : ModSystem
 
     public override void Start(ICoreAPI api)
     {
-        CodexLogger.Info(api, "mod-system", $"loading The Almanac: Codex v0.1.0 (side={api.Side})");
+        CodexLogger.Info(api, "mod-system", $"loading The Almanac: Codex v0.2.1 (side={api.Side})");
 
         Processes = new ProcessRegistry(api);
         Entries = new AlmanacEntryRegistry(api);
@@ -93,6 +93,11 @@ public class AlmanacCodexModSystem : ModSystem
 
     public override void AssetsFinalize(ICoreAPI api)
     {
+        // v0.2.1: walk vanilla collectibles for almanac-* tagged flora and register
+        // them as Codex entries. Migrated from Forager so flora discovery works
+        // even with only Codex installed.
+        FloraDiscoveryWalker.Run(api);
+
         CodexLogger.Info(api, "mod-system",
             $"assets finalized: {Entries.Count} entries registered, {Processes.All.Count} processes registered");
     }

@@ -1,0 +1,19 @@
+[
+  {
+    "op": "addmerge",
+    "file": "game:blocktypes/plant/fruitingbush",
+    "path": "/tagsByType",
+    "value": {
+      "fruitingbush-*-beautyberry-*":  ["almanac-fruity", "almanac-sweet"],
+      "fruitingbush-*-blackberry-*":   ["almanac-fruity", "almanac-sweet"],
+      "fruitingbush-*-blackcurrant-*": ["almanac-fruity", "almanac-acidic"],
+      "fruitingbush-*-blueberry-*":    ["almanac-fruity", "almanac-sweet"],
+      "fruitingbush-*-cloudberry-*":   ["almanac-fruity", "almanac-sweet"],
+      "fruitingbush-*-cranberry-*":    ["almanac-fruity", "almanac-acidic"],
+      "fruitingbush-*-raspberry-*":    ["almanac-fruity", "almanac-sweet"],
+      "fruitingbush-*-redcurrant-*":   ["almanac-fruity", "almanac-acidic"],
+      "fruitingbush-*-strawberry-*":   ["almanac-fruity", "almanac-sweet"],
+      "fruitingbush-*-whitecurrant-*": ["almanac-fruity", "almanac-acidic"]
+    }
+  }
+]

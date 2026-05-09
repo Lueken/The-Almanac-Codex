@@ -1,0 +1,45 @@
+[
+  {
+    "op": "addmerge",
+    "file": "game:blocktypes/plant/aquatic/seagrass",
+    "path": "/tagsByType",
+    "value": {
+      "aquatic-seagrass-*": ["almanac-leafy"]
+    }
+  },
+  {
+    "op": "addmerge",
+    "file": "game:blocktypes/plant/aquatic/seaweed",
+    "path": "/tagsByType",
+    "value": {
+      "seaweed-*": ["almanac-leafy"]
+    }
+  },
+  {
+    "op": "addmerge",
+    "file": "game:blocktypes/plant/aquatic/watercrowfoot",
+    "path": "/tagsByType",
+    "value": {
+      "aquatic-watercrowfoot-*": ["almanac-leafy"]
+    }
+  },
+  {
+    "op": "addmerge",
+    "file": "game:blocktypes/plant/reedpapyrus",
+    "path": "/tagsByType",
+    "value": {
+      "tallplant-coopersreed-*": ["almanac-fibrous"],
+      "tallplant-papyrus-*":     ["almanac-fibrous"],
+      "tallplant-tule-*":        ["almanac-fibrous"],
+      "tallplant-brownsedge-*":  ["almanac-fibrous"]
+    }
+  },
+  {
+    "op": "addmerge",
+    "file": "game:blocktypes/plant/bamboo",
+    "path": "/tagsByType",
+    "value": {
+      "bamboo-*": ["almanac-fibrous"]
+    }
+  }
+]

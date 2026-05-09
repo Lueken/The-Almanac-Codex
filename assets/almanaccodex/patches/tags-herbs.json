@@ -1,0 +1,18 @@
+[
+  {
+    "op": "addmerge",
+    "file": "game:blocktypes/plant/herb",
+    "path": "/tagsByType",
+    "value": {
+      "herb-basil":     ["almanac-aromatic"],
+      "herb-chamomile": ["almanac-aromatic", "almanac-medicinal"],
+      "herb-cilantro":  ["almanac-aromatic", "almanac-medicinal"],
+      "herb-lavender":  ["almanac-aromatic", "almanac-medicinal"],
+      "herb-marjoram":  ["almanac-aromatic", "almanac-medicinal"],
+      "herb-mint":      ["almanac-aromatic", "almanac-medicinal"],
+      "herb-saffron":   ["almanac-aromatic"],
+      "herb-sage":      ["almanac-aromatic", "almanac-medicinal"],
+      "herb-thyme":     ["almanac-aromatic", "almanac-medicinal"]
+    }
+  }
+]

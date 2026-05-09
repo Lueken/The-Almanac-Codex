@@ -1,0 +1,50 @@
+[
+  {
+    "op": "addmerge",
+    "file": "game:itemtypes/food/vegetable",
+    "path": "/tagsByType",
+    "value": {
+      "vegetable-cabbage":            ["almanac-leafy"],
+      "vegetable-carrot":             ["almanac-starchy"],
+      "vegetable-cassava":            ["almanac-starchy"],
+      "vegetable-cookedcattailroot":  ["almanac-starchy"],
+      "vegetable-cookedpapyrusroot":  ["almanac-starchy"],
+      "vegetable-fennel":             ["almanac-aromatic"],
+      "vegetable-onion":              ["almanac-aromatic"],
+      "vegetable-parsnip":            ["almanac-starchy"],
+      "vegetable-pumpkin":            ["almanac-starchy", "almanac-sweet"],
+      "vegetable-turnip":             ["almanac-starchy"],
+      "vegetable-bellpepper":         ["almanac-fruity", "almanac-aromatic"]
+    }
+  },
+  {
+    "op": "addmerge",
+    "file": "game:itemtypes/food/grain",
+    "path": "/tagsByType",
+    "value": {
+      "grain-amaranth":  ["almanac-seedy"],
+      "grain-flax":      ["almanac-seedy", "almanac-fibrous"],
+      "grain-rice":      ["almanac-seedy"],
+      "grain-rye":       ["almanac-seedy"],
+      "grain-spelt":     ["almanac-seedy"],
+      "grain-sunflower": ["almanac-seedy"]
+    }
+  },
+  {
+    "op": "addmerge",
+    "file": "game:itemtypes/food/legume",
+    "path": "/tagsByType",
+    "value": {
+      "legume-peanut":  ["almanac-seedy"],
+      "legume-soybean": ["almanac-seedy"]
+    }
+  },
+  {
+    "op": "addmerge",
+    "file": "game:itemtypes/food/spice",
+    "path": "/tagsByType",
+    "value": {
+      "spice-licorice-*": ["almanac-aromatic", "almanac-medicinal"]
+    }
+  }
+]
